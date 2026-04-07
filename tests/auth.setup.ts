@@ -1,6 +1,12 @@
 import { test as setup, expect } from '@playwright/test'
+import fs from 'fs';
+import path from 'path';
+
+const authFile = 'playwright/.auth/user.json';
 
 setup('authecticated page setup', async ({ page, request }) => {
+  fs.mkdirSync(path.dirname(authFile), { recursive: true });
+
    const apiContext = await request.post(`${process.env.API_URL}/auth/login`,{
       data: {
         userEmail: process.env.USER_EMAIL,
@@ -19,5 +25,5 @@ setup('authecticated page setup', async ({ page, request }) => {
       localStorage.setItem('token', value)
     },token);
 
-    await page.context().storageState({ path: 'playwright/.auth/user.json' });
+    await page.context().storageState({ path: authFile });
 })

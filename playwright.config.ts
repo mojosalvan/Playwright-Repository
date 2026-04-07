@@ -42,13 +42,17 @@ export default defineConfig({
     {
       name: 'setup',
       testMatch: /.*\.setup\.ts/,
-      use: { ...devices['Desktop Chrome'] },
+      use: {
+        storageState: undefined, 
+      },
     },
 
     {
       name: 'chromium',
       dependencies: ['setup'],
-      use: { ...devices['Desktop Chrome'] },
+      use: { 
+        storageState: 'playwright/.auth/user.json',
+       },
       
     },
 
