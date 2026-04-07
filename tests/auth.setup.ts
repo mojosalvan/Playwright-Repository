@@ -2,7 +2,7 @@ import { test as setup, expect } from '@playwright/test'
 import fs from 'fs';
 import path from 'path';
 
-const authFile = 'playwright/.auth/user.json';
+const authFile = path.join(process.cwd(), 'playwright', '.auth', 'user.json');
 
 setup('authecticated page setup', async ({ page, request }) => {
   fs.mkdirSync(path.dirname(authFile), { recursive: true });
