@@ -28,7 +28,7 @@ export default defineConfig({
         ...devices['Desktop Chrome'],
         storageState: 'playwright/.auth/user.json',
       },
-      dependencies: ['setup'],
+      // remove dependencies here because setup is already run explicitly in CI
     },
   ],
 });
