@@ -42,7 +42,7 @@ export default defineConfig({
       name: 'setup',
       testMatch: /auth\.setup\.ts/,
       use: {
-        storageState: undefined, 
+        storageState: { cookies: [], origins: [] }, 
       },
     },
     {
