@@ -26,8 +26,10 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+    - name: Run Auth Setup
+      run: npx playwright test --project=setup --config=playwright.config.ts
     - name: Run Playwright tests
-      run: npx playwright test --config=playwright.config.ts
+      run: npx playwright test --project=chromium --config=playwright.config.ts
     - uses: actions/upload-artifact@v6
       if: ${{ !cancelled() }}
       with:
