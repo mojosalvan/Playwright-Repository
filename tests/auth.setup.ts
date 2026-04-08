@@ -1,6 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import { test as setup, expect } from '@playwright/test';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const authFile = path.join(process.cwd(), 'playwright', '.auth', 'user.json');
 

@@ -56,6 +56,7 @@ test.describe('Login without authenticated state',() => {
 test.describe('Login with authenticated state', () => {
   test('Authenticated user should be redirected to dashboard page',
     async ({ page }) => {
-      await page.goto('/client/#/auth/login');
+      await page.goto('/client/#/auth/login', { waitUntil: 'domcontentloaded' });
+      await expect(page).toHaveURL(/dashboard/);
     })
 })

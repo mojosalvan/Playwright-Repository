@@ -5,13 +5,15 @@ dotenv.config();
 
 export default defineConfig({
   testDir: './tests',
-  testIgnore: /.*\.setup\.ts/,
-
+  testMatch: /.*\.setup\.ts/,
+  fullyParallel: false,
+  retries: 0,
+  workers: 1,
   use: {
-    baseURL: process.env.BASE_URL,
     ...devices['Desktop Chrome'],
-    storageState: 'playwright/.auth/user.json',
-    trace: process.env.CI ? 'on' : 'retain-on-failure',
+    baseURL: process.env.BASE_URL,
+    storageState: { cookies: [], origins: [] },
+    trace: 'on',
     headless: true,
     screenshot: 'only-on-failure',
   },
