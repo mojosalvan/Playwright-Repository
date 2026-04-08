@@ -28,20 +28,8 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
-
-      - name: Run auth setup
-        run: npx playwright test --config=playwright.setup.config.ts
-
-      - name: Verify auth file exists
-        run: |
-          ls -la playwright || true
-          ls -la playwright/.auth || true
-          test -f playwright/.auth/user.json && echo "auth file exists"
-                
-
       - name: Run Playwright tests
         run: npx playwright test --project=chromium --config=playwright.config.ts
-
       - uses: actions/upload-artifact@v6
         if: ${{ !cancelled() }}
         with:
