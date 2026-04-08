@@ -5,16 +5,16 @@ dotenv.config();
 
 export default defineConfig({
   testDir: './tests',
-  testMatch: /auth\.setup\.ts/,
+  testMatch: /.*\.setup\.ts/,
   fullyParallel: false,
-  retries: 0,
   workers: 1,
+  retries: 0,
   use: {
     ...devices['Desktop Chrome'],
     baseURL: process.env.BASE_URL,
     storageState: { cookies: [], origins: [] },
-    trace: 'on',
     headless: true,
+    trace: 'on',
     screenshot: 'only-on-failure',
   },
 });

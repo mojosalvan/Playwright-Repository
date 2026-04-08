@@ -40,7 +40,7 @@ jobs:
                 
 
       - name: Run Playwright tests
-        run: npx playwright test --config=playwright.config.ts
+        run: npx playwright test --project=chromium --config=playwright.config.ts
 
       - uses: actions/upload-artifact@v6
         if: ${{ !cancelled() }}
