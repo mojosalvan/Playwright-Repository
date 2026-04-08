@@ -5,7 +5,7 @@ dotenv.config();
 
 export default defineConfig({
   testDir: './tests',
-  testMatch: /.*\.setup\.ts/,
+  testMatch: /auth\.setup\.ts/,
   fullyParallel: false,
   retries: 0,
   workers: 1,
