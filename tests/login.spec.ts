@@ -1,8 +1,5 @@
 import { test, expect } from '../fixtures/base.fixture.js'
-import dotenv from 'dotenv'
-import { env } from '../utils/env.js' 
-
-dotenv.config();
+import { validUser, invalidEmailFormat, invalidPassword } from '../test-data/userData.ts';
 
 test.describe('Login without authenticated state', () => {
   test.use({
@@ -14,19 +11,19 @@ test.describe('Login without authenticated state', () => {
 	})
 
   test('Valid login redirects to dashboard', async ({ loginPage }) => {
-    await loginPage.login({ email: env.USER_EMAIL, password: env.USER_PASSWORD });
+    await loginPage.login(validUser);
 
     await expect(loginPage.page).toHaveURL(/dashboard/);
   })
 
   test('Invalid email format shows error', async ({ loginPage }) => {
-    await loginPage.login({ email: env.INVALID_EMAIL_FORMAT, password: env.USER_PASSWORD });
+    await loginPage.login(invalidEmailFormat);
 
     await expect(loginPage.formAuthError).toContainText('*Enter Valid Email');
   })
 
   test('Invalid password shows error', async ({ loginPage }) => {
-    await loginPage.login({ email: env.USER_EMAIL, password: env.INVALID_PASSWORD });
+    await loginPage.login(invalidPassword);
     
     await expect(loginPage.toastError).toContainText(/Incorrect email or password/);
   })

@@ -1,11 +1,7 @@
 import { Page, Locator } from '@playwright/test' 
+import { LoginCredentials } from '../types/types.ts';
 
-interface LoginCredentials {
-  email: string;
-  password: string;
-}
-
-export default class LoginPage {
+export default class LoginPage{
   readonly userEmail: Locator;
   readonly userPassword: Locator;
   readonly loginButton: Locator;
@@ -25,9 +21,9 @@ export default class LoginPage {
     await this.page.goto(url, { waitUntil: 'domcontentloaded' });
   }
 
-  async login({ email, password }: LoginCredentials): Promise<void> {
-    await this.userEmail.fill(email);
-    await this.userPassword.fill(password);
+  async login(loginCredentials: LoginCredentials): Promise<void> {
+    await this.userEmail.fill(loginCredentials.email);
+    await this.userPassword.fill(loginCredentials.password);
     await this.loginButton.click();
   }
 }
