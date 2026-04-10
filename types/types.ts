@@ -11,6 +11,4 @@ type UserMeta = {
   isActive: boolean;
 }
 
-type TestUser = Credentials & UserMeta;
-
 export type LoginCredentials = Pick<Credentials, 'email' | 'password'>;
